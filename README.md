@@ -2,7 +2,12 @@
 
 Experimental Discord bot written with `discordrb`.
 
----
+# Requirements
+
++ Ruby 2.1 or later
++ discordrb gem
+  + Use `bundle install` inside the root directory of the repository, if possible
++ `ffmpeg`, `libsodium` and `libopus` for voice. Instructions [here][libnacl-doc] and [here][libopus-doc].
 
 # TODO
 
@@ -16,3 +21,6 @@ Note: the order of the goals does not reflect their priority, or any other attri
 - [ ] Quote messages through the channel history (checks) or by their ID.
 - [ ] Dynamic information and static configurations parsed from JSON files.
 - [ ] Disconnect, reconnect, restart, shutdown, pause, refresh and die commands.
+
+[libnacl-doc]: https://github.com/meew0/discordrb/wiki/Installing-libsodium "Source: discordrb"
+[libopus-doc]: https://github.com/meew0/discordrb/wiki/Installing-libopus "Source: discordrb"
