@@ -5,4 +5,10 @@ main() {
   git status
   git commit -v -m "$@"
   git push -u origin master
-} && [[ -z "$@" ]] && main "$@" || main "Version bump"
+}
+
+if [[ -n "$@" ]]; then
+  main "$@"
+else
+  main "Version bump"
+fi
