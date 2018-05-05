@@ -1,0 +1,2 @@
+# Shorthand for 'git all; git status; git commit -v -m "Something"; git push -u origin master'
+push.sh
