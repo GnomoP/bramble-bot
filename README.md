@@ -6,7 +6,10 @@ Experimental Discord bot written with `discordrb`.
 
 # TODO
 
+Note: the order of the goals does not reflect their priority, or any other attribute.
+
 - [ ] Run code in Python, Ruby, Perl or Bash.
+- [ ] Periodic update of gems and GitHub pushing.
 - [ ] Bot execution modes, e.g. log, cmd, sleep etc.
 - [ ] Command execution through the terminal emulator.
 - [ ] Command execution without prefixing for certain commands.
