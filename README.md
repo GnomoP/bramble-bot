@@ -6,12 +6,12 @@ Experimental Discord bot written with `discordrb`.
 
 + Ruby 2.1 or later
 + discordrb gem
-  + Use `bundle install` inside the root directory of the repository, if possible
+  + Use `bundle install` inside the root of the repository, if possible
 + `ffmpeg`, `libsodium` and `libopus` for voice. Instructions [here][libnacl-doc] and [here][libopus-doc].
 
 # TODO
 
-Note: the order of the goals does not reflect their priority, or any other attribute.
+Note: the order of the goals does not reflect their priority, or any other relevant attribute.
 
 - [ ] Run code in Python, Ruby, Perl or Bash.
 - [ ] Periodic update of gems and GitHub pushing.
