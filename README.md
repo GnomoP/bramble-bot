@@ -22,5 +22,5 @@ Note: the order of the goals does not reflect their priority, or any other relev
 - [ ] Dynamic information and static configurations parsed from JSON files.
 - [ ] Disconnect, reconnect, restart, shutdown, pause, refresh and die commands.
 
-[libnacl-doc]: https://github.com/meew0/discordrb/wiki/Installing-libsodium "Source: discordrb"
-[libopus-doc]: https://github.com/meew0/discordrb/wiki/Installing-libopus "Source: discordrb"
+[libnacl-doc]: https://github.com/meew0/discordrb/wiki/Installing-libsodium "From the discordrb wiki"
+[libopus-doc]: https://github.com/meew0/discordrb/wiki/Installing-libopus "From the discordrb wiki"
