@@ -1,3 +1,6 @@
 #!/bin/bash
 
-bundle exec ruby main.rb
+while [[ "$?" == 0 ]]; do
+  clear
+  bundle exec ruby main.rb
+done
