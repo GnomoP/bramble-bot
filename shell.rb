@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'notify-send'
+require 'open-uri'
 require 'readline'
 
 class Object
@@ -19,17 +20,17 @@ class Shell
     @read = Readline
     @list = config["shell_commands"]
 
+    @prompt = "(#{bot.bot_user.name}##{bot.bot_user.discriminator}) >> "
+
     @read.completion_append_character = " "
     @read.completion_proc = proc { |s| @read::HISTORY.grep(/^\S/) }
 
   end
 
   def create_loop
-    while input = @read.readline(">> ", true)
+    while input = @read.readline(@prompt, true)
 
       @hist = @read::HISTORY
-      args = input.split(" ")
-
       @hist.pop and next if input == "" or input.match('^\s+$')
 
       # Command-line functions
@@ -46,15 +47,19 @@ class Shell
         @bot.send_message(id, say)
       end
 
-      def doot id: @cfg["bot_owner_id"], server: @cfg["commands_server"], quant: 1, leave: true, file: "snd/doot.m4a"
+      def play id: @cfg["bot_owner_id"], server: @cfg["commands_server"], quant: 1, leave: true, file: "snd/doot.m4a", files: ["snd/doot.m4a", "snd/DOOT.m4a"]
         begin
           member = @bot.server(server).member(id)
           channel = member.voice_channel
           raise Exception.new("Not in a voice chat") unless channel
 
           voice = @bot.voices[server] || @bot.voice_connect(channel)
-          quant.times { voice.play_file(file) }
-          voice.destroy if leave
+          quant.times { voice.play_io(open(file)) } if file
+          files.each { |fp| voice.play_io(open(fp)) } if files
+
+          if leave
+            voice.destroy
+          end
         rescue Exception => e
           NotifySend.send summary: e.backtrace[0],
                           body: e.message,
@@ -65,7 +70,7 @@ class Shell
       end
 
       def history id: @cfg["commands_channel"], quant: 100
-        channel = @bot.pm_channel(id).id if @bot.pm_channel(id) rescue nil
+        channel = @bot.pm_channel(id) if @bot.pm_channel(id) rescue nil
         channel ||= @bot.channel(id)
         channel.history(quant)
       end
@@ -78,7 +83,7 @@ class Shell
       end
 
       def read id: @cfg["commands_channel"], quant: 10
-        channel = @bot.pm_channel(id).id if @bot.pm_channel(id) rescue nil
+        channel = @bot.pm_channel(id) if @bot.pm_channel(id) rescue nil
         channel ||= @bot.channel(id)
         channel.history(quant).reverse_each do |m|
           next if m.content == "" or m.content =~ /^\s+$/m
