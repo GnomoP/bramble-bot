@@ -5,6 +5,8 @@ Gemfile.lock
 last_update
 
 inv/
+snd/*.opus
+snd/*.ogg
 
 *~
 *.swap
